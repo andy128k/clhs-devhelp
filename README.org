@@ -1,0 +1,18 @@
+#+TITLE: CLHS for DevHelp
+
+This repository contains scripts for generating [[http://www.lispworks.com/documentation/common-lisp.html][CLHS]] in DevHelp-format.
+
+* Generating
+
+  Just run make to generate a book.
+
+  =make=
+
+* Installation
+
+  Command
+
+  =make install_home=
+
+  installs generated book into home directory and makes it immeditely available for reading in [[https://wiki.gnome.org/Apps/Devhelp][DevHelp]] application.
+
