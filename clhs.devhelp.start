@@ -1,0 +1,4 @@
+<?xml version="1.0" encoding="utf-8" standalone="no"?>
+<!DOCTYPE book PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "">
+<book xmlns="http://www.devhelp.net/book" link="HyperSpec/Front/index.htm" name="CLHS" title="Common Lisp Hyperspec (tm)" author="Kent M. Pitman" language="common lisp">
+

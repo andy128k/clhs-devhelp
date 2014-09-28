@@ -1,0 +1,36 @@
+#!/usr/bin/env python
+
+import os
+from links_parser import LinksParser
+from xml.dom.minidom import Element
+
+
+class IndexParser(LinksParser):
+    def take_link(self, attrs):
+        if attrs.get('rel') == 'DEFINITION':
+            return {}
+        else:
+            return None
+
+
+def index():
+    base = 'clhs'
+    path = 'HyperSpec/Front'
+    name = 'X_AllSym.htm'
+    with open(os.path.join(base, path, name)) as f:
+        links = IndexParser.parse(f.read())
+
+    index = Element('functions')
+    for link in links:
+        href = os.path.normpath(os.path.join(path, link['href']))
+        e = Element('keyword')
+        e.setAttribute('type', 'function')
+        e.setAttribute('name', link['text'])
+        e.setAttribute('link', href)
+        index.appendChild(e)
+    return index
+
+
+if __name__ == '__main__':
+    print index().toprettyxml()
+

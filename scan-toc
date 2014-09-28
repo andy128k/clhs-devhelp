@@ -1,0 +1,40 @@
+#!/usr/bin/env python
+
+import os
+from links_parser import LinksParser
+from xml.dom.minidom import Element
+
+
+class TocParser(LinksParser):
+    def take_link(self, attrs):
+        if not self.in_list:
+            return None
+        elif self.in_list == 'ol':
+            return {'no': self.index}
+        else:
+            return {}
+
+
+def toc():
+    base = 'clhs'
+    path = 'HyperSpec/Front'
+    name = 'Contents.htm'
+    with open(os.path.join(base, path, name)) as f:
+        links = TocParser.parse(f.read())
+
+    index = Element('chapters')
+    for link in links:
+        name = link['text']
+        if 'no' in link:
+            name = str(link['no']) + '. ' + name
+        href = os.path.normpath(os.path.join(path, link['href']))
+        e = Element('sub')
+        e.setAttribute('name', name)
+        e.setAttribute('link', href)
+        index.appendChild(e)
+    return index
+
+
+if __name__ == '__main__':
+    print toc().toprettyxml()
+
