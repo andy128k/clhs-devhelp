@@ -16,3 +16,7 @@ clhs: $(ARCHIVE)
 $(ARCHIVE):
 	wget ftp://ftp.lispworks.com/pub/software_tools/reference/$(ARCHIVE)
 
+
+install_home: clhs/clhs.devhelp2
+	mkdir -p ~/.local/share/devhelp/books
+	cp -aR clhs ~/.local/share/devhelp/books
